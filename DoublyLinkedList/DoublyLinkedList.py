@@ -45,8 +45,8 @@ class DoublyLinkedList:
         cur = self.head
         while cur.next is not None:
             cur = cur.next
-        cur.prev = cur.tail.prev
-        cur.tail.next = None
+        curPrev = cur.prev
+        curPrev.next = None
 
 
 if __name__ == '__main__':
@@ -84,6 +84,6 @@ if __name__ == '__main__':
     print()
 
     # Delete from the end of the doubly linked list.
-    # print("The linked list after deleting a node at the end of the doubly linked list")
-    # lList.deleteEnd()
-    # lList.printList()
+    print("The linked list after deleting a node at the end of the doubly linked list")
+    lList.deleteEnd()
+    lList.printList()
