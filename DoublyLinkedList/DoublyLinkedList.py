@@ -48,6 +48,24 @@ class DoublyLinkedList:
         curPrev = cur.prev
         curPrev.next = None
 
+    def insertAtPosition(self, ele, pos):
+        if pos < 0:
+            print("Invalid Position")
+        if pos == 1:
+            temp = Node(ele)
+            return temp
+        else:
+            newNode = Node(ele)
+            temp = self.head
+            while pos != 1:
+                temp = temp.next
+                pos -= 1
+            temp2 = temp.next
+            temp.next = newNode
+            newNode.next = temp2
+            temp2.prev = newNode
+            newNode.prev = temp.next
+
 
 if __name__ == '__main__':
     lList = DoublyLinkedList()
@@ -87,3 +105,10 @@ if __name__ == '__main__':
     print("The linked list after deleting a node at the end of the doubly linked list")
     lList.deleteEnd()
     lList.printList()
+    print()
+
+    # Insert at a specified position of the linked list.
+    print("The linked list after inserting a node at the specified position of the doubly linked list")
+    lList.insertAtPosition(32, 2)
+    lList.printList()
+    print()
