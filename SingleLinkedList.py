@@ -4,7 +4,7 @@ class Node:
         self.nextNode = None
 
 
-class LinkedList:
+class SingleLinkedList:
     def __init__(self):
         self.head = None
 
@@ -29,9 +29,28 @@ class LinkedList:
             cur = cur.nextNode
         cur.nextNode = temp
 
+    def insertAtPosition(self, ele, position):
+        if position < 1:
+            print("Invalid position\n")
+            return
+        if position == 1:
+            temp = Node(ele)
+            temp.nextNode = self.head
+            self.head = temp
+        else:
+            count = 0
+            temp = Node(ele)
+            cur = self.head
+            while cur.nextNode is not None:
+                cur = cur.nextNode
+                count += 1
+                if count == position - 1:
+                    cur.nextNode = temp
+                    temp.nextNode = cur.nextNode
+
 
 if __name__ == '__main__':
-    lList = LinkedList()
+    lList = SingleLinkedList()
     lList.head = Node(1)
     second = Node(2)
     third = Node(3)
@@ -40,14 +59,22 @@ if __name__ == '__main__':
     second.nextNode = third
 
     # Printing the list
-    lList.printList()
+    # lList.printList()
+    # print("\n")
 
     # Insert at the beginning of the linked list.
-    print("The linked list after inserting at the beginning:\n")
+    print("The linked list after inserting at the beginning:")
     lList.insertBegin(25)
     lList.printList()
+    print()
 
     # Insert at the end of the linked list.
-    print("The linked list after inserting at the end:\n")
+    print("The linked list after inserting at the end:")
     lList.insertEnd(35)
+    lList.printList()
+    print()
+
+    # Insert at a given position in the linked list.
+    print("The linked list after inserting node at a given position:")
+    lList.insertAtPosition(23, 2)
     lList.printList()
